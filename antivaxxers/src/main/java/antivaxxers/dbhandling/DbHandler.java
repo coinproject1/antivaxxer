@@ -3,6 +3,7 @@ package antivaxxers.dbhandling;
 import java.io.File;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,9 +22,10 @@ public class DbHandler {
 	TwitterHandler twitterHandler = new TwitterHandler();
 
 	private void saveTweetsFromUser(String username, boolean isAntivaxxer) {
+
+		Twitterer twitterer = new Twitterer(username, isAntivaxxer);
 		Collection<Tweet> tweetsfromUser = twitterHandler
 				.getTweetsFromUser(username);
-		Twitterer twitterer = new Twitterer(username, isAntivaxxer);
 
 		Iterator<Tweet> itr = tweetsfromUser.iterator();
 		while (itr.hasNext()) {
@@ -38,11 +40,20 @@ public class DbHandler {
 
 	}
 
-	private void saveTweetsFromUsers(String[] usernames, boolean isAntivaxxer) {
+	public void saveTweetsFromUsers(String[] usernames, boolean isAntivaxxer) {
 		int i = 0;
 		while (i <= usernames.length) {
 			saveTweetsFromUser(usernames[i], isAntivaxxer);
 		}
+	}
+
+	public List<Twitterer> getAntivaxxers() {
+		return null;
+	}
+
+	public List<Twitterer> getProvaxxers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

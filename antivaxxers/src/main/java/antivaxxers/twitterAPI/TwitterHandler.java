@@ -33,12 +33,4 @@ public class TwitterHandler {
 
 		return tweets;
 	}
-
-	public List<Tweet> getTweetsFromAntivaxxers() {
-		return null;
-	}
-
-	public List<Tweet> getTweetsFromProvaxxers() {
-		return null;
-	}
 }

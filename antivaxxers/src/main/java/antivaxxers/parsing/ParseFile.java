@@ -16,32 +16,24 @@ public class ParseFile {
 	// PRIVATE
 	private final Path fFilePath;
 	private final static Charset ENCODING = StandardCharsets.UTF_8;
-	private List<Twitterer> antivaxxers = new ArrayList<>();
+	private List<String> antivaxxers = new ArrayList<>();
+	private List<String> provaxxers = new ArrayList<>();
 
-	public void parseAntivaxxers() throws IOException {
-		ParseFile parser = new ParseFile("src/main/resources/TwittererTextFiles/antivaxxers.txt");
-		parser.processAntivaxxersLineByLine();
-		log("Done.");
-	}
 	
-	public void parseProvaxxers() throws IOException {
-		ParseFile parser = new ParseFile("src/main/resources/TwittererTextFiles/provaxxers.txt");
-		parser.processProvaxxersLineByLine();
-		log("Done.");
-	}
 
 	public ParseFile(String aFileName) {
 		fFilePath = Paths.get(aFileName);
 	}
 
-	private void processAntivaxxersLineByLine() throws IOException {
+	public void processAntivaxxersLineByLine() throws IOException {
 		try (Scanner scanner = new Scanner(fFilePath, ENCODING.name())) {
 			while (scanner.hasNextLine()) {
 				processLine(scanner.nextLine(), true);
 			}
 		}
 	}
-	private void processProvaxxersLineByLine() throws IOException {
+
+	public void processProvaxxersLineByLine() throws IOException {
 		try (Scanner scanner = new Scanner(fFilePath, ENCODING.name())) {
 			while (scanner.hasNextLine()) {
 				processLine(scanner.nextLine(), false);
@@ -53,15 +45,32 @@ public class ParseFile {
 		// use a second Scanner to parse the content of each line
 		Scanner scanner = new Scanner(aLine);
 		scanner.useDelimiter(" ");
-		if (scanner.hasNext()) {
-			Twitterer twitterer = new Twitterer(scanner.next(), isAntivaxxer);
-			this.antivaxxers.add(twitterer);			
+
+		if (isAntivaxxer) {
+			if (scanner.hasNext()) {
+				this.antivaxxers.add(scanner.next());
+			} else {
+				log("Empty or invalid line. Unable to process.");
+			}
 		} else {
-			log("Empty or invalid line. Unable to process.");
+			if (scanner.hasNext()) {
+				this.provaxxers.add(scanner.next());
+			} else {
+				log("Empty or invalid line. Unable to process.");
+			}
 		}
+
 	}
 
-	private static void log(Object aObject) {
+	public List<String> getAntivaxxers() {
+		return antivaxxers;
+	}
+
+	public List<String> getProvaxxers() {
+		return provaxxers;
+	}
+
+	public static void log(Object aObject) {
 		System.out.println(String.valueOf(aObject));
 	}
 }
