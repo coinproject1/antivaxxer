@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Tweet implements Serializable {
@@ -11,11 +13,16 @@ public class Tweet implements Serializable {
 	/**
 	 * 
 	 */
+	@Id
+	private long id;
 	private static final long serialVersionUID = 1445515991640811472L;
 	private boolean isAntivaxxer;
 	private String location;
 	private String message;
 	private Date date;
+	
+	@ManyToOne
+	private Twitterer twitterer;
 
 	public Tweet(String message, String location, Date date) {
 

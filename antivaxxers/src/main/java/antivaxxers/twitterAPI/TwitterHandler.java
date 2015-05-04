@@ -11,6 +11,10 @@ import twitter4j.TwitterFactory;
 
 public class TwitterHandler {
 
+	public TwitterHandler() {
+
+	}
+
 	public List<Tweet> getTweetsFromUser(String username) {
 
 		Twitter twitter = TwitterFactory.getSingleton();
@@ -19,7 +23,8 @@ public class TwitterHandler {
 		try {
 			statuses = twitter.getUserTimeline("username");
 			for (Status status : statuses) {
-				Tweet tweet = new Tweet(status.getText(), status.getGeoLocation().toString(), status.getCreatedAt());
+				Tweet tweet = new Tweet(status.getText(), status
+						.getGeoLocation().toString(), status.getCreatedAt());
 				tweets.add(tweet);
 			}
 		} catch (TwitterException e) {
@@ -27,5 +32,13 @@ public class TwitterHandler {
 		}
 
 		return tweets;
+	}
+
+	public List<Tweet> getTweetsFromAntivaxxers() {
+		return null;
+	}
+
+	public List<Tweet> getTweetsFromProvaxxers() {
+		return null;
 	}
 }

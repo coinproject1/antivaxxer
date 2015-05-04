@@ -1,0 +1,15 @@
+<persistence-unit name="antivaxxers" transaction-type="RESOURCE_LOCAL">
+	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+	<properties>
+		<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl">
+		</property>
+		<property name="javax.persistence.jdbc.user" value="ttocs">
+		</property>
+		<property name="javax.persistence.jdbc.password" value="password"></property>
+
+		<property name="eclipselink.logging.level" value="FINEST">
+		</property>
+	</properties>
+</persistence-unit>
