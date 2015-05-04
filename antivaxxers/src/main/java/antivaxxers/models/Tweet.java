@@ -17,7 +17,17 @@ public class Tweet implements Serializable {
 	private String message;
 	private Date date;
 
-	// @Entity
+	public Tweet(String message, String location, Date date) {
+
+		if (message == null || location == null || date == null) {
+			throw new NullPointerException("cannot create tweet");
+		}
+		this.message = message;
+		this.location = location;
+		this.date = date;
+		this.isAntivaxxer = false;
+	}
+	
 	public Tweet(String message, String location, Date date,
 			boolean isAntivaxxer) {
 
