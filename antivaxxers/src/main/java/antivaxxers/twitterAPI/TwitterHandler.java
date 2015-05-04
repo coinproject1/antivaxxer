@@ -17,7 +17,7 @@ public class TwitterHandler {
 		List<Status> statuses = new ArrayList();
 		ArrayList<Tweet> tweets = new ArrayList();
 		try {
-			statuses = twitter.getUserTimeline();
+			statuses = twitter.getUserTimeline("username");
 			for (Status status : statuses) {
 				Tweet tweet = new Tweet(status.getText(), status.getGeoLocation().toString(), status.getCreatedAt());
 				tweets.add(tweet);
