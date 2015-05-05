@@ -55,5 +55,10 @@ public class Tweet implements Serializable {
 	public boolean isAntivaxxer() {
 		return isAntivaxxer;
 	}
+	
+	@Override
+	public String toString() {
+		return this.message;
+	}
 
 }
