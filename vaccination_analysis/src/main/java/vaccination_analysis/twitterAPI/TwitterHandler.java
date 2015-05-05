@@ -24,9 +24,15 @@ public class TwitterHandler {
 		try {
 			statuses = twitter.getUserTimeline(username);
 			for (Status status : statuses) {
-				Tweet tweet = new Tweet(status.getText(), status
-						.getGeoLocation().toString(), status.getCreatedAt());
-				tweets.add(tweet);
+//				Tweet tweet = new Tweet(status.getText(), status
+//						.getGeoLocation().toString(), status.getCreatedAt());
+				Tweet tweet = new Tweet(status.getText());
+				try {
+					tweets.add(tweet);
+				}
+				catch (NullPointerException n) {
+					System.out.println("tweet was null");
+				}
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();

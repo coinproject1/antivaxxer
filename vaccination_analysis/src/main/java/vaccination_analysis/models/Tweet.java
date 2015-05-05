@@ -15,8 +15,6 @@ public class Tweet implements Serializable {
 	private String message;
 	private Date date;
 	
-	private long twittererId;
-
 	public Tweet(String message, String location, Date date) {
 
 		if (message == null || location == null || date == null) {
@@ -38,6 +36,10 @@ public class Tweet implements Serializable {
 		this.location = location;
 		this.date = date;
 		this.isAntivaxxer = isAntivaxxer;
+	}
+	
+	public Tweet(String message) {
+		this.message = message;
 	}
 
 	public String getMessage() {

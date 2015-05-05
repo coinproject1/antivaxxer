@@ -21,6 +21,7 @@ public class StartScan {
 
 	public static void main(String... aArguments) throws IOException {
 
+		System.out.println("Starting scan");
 		// read vaxxers from file
 		List<String> antivaxxers = usernamesReader.getAntivaxxers();
 		List<String> provaxxers = usernamesReader.getProvaxxers();
@@ -33,13 +34,14 @@ public class StartScan {
 			String twitterername = itr_anti.next();
 			Twitterer twitterer = new Twitterer(twitterername);
 			antivaxxerList.add(twitterer);
-			System.out.println("twitterer: " + twitterer.getName());
+			System.out.println("twitterer anti added: " + twitterer.getName());
 
 		}
 		while (itr_pro.hasNext()) {
 			String twitterername = itr_pro.next();
 			Twitterer twitterer = new Twitterer(twitterername);
 			provaxxerList.add(twitterer);
+			System.out.println("twitterer pro added: " + twitterer.getName());
 		}
 
 		// get Tweets for every Twitterer
@@ -47,15 +49,18 @@ public class StartScan {
 		Iterator<Twitterer> itr_protw = provaxxerList.iterator();
 
 		while (itr_antitw.hasNext()) {
-			Twitterer current = itr_antitw.next();
-			List<Tweet> current_users_tweets = getTweetsFromUser(current);
-			Iterator<Tweet> itr_current = current_users_tweets.iterator();
-			while (itr_current.hasNext()) {
-				current.addTweet(itr_current.next());
-				System.out.println("message: "
-						+ itr_current.next().getMessage());
+			Twitterer currentTwitterer = itr_antitw.next();
+			List<Tweet> currentTwitterersTweets = getTweetsFromUser(currentTwitterer);
+			
+			
+			Iterator<Tweet> itr_currentTwitterersTweets = currentTwitterersTweets.iterator();
+			while (itr_currentTwitterersTweets.hasNext()) {
+				Tweet currentTweet = itr_currentTwitterersTweets.next();
+				System.out.println("message from "+ currentTwitterer.getName() + ": "
+						+ currentTweet.getMessage());
+				//currentTwitterer.addTweet(currentTweet);	
 			}
-			addTweetsToFiles(current_users_tweets, "protweets.txt");
+			addTweetsToFiles(currentTwitterersTweets, "protweets.txt");
 
 		}
 		while (itr_protw.hasNext()) {
@@ -63,12 +68,11 @@ public class StartScan {
 			List<Tweet> current_users_tweets = getTweetsFromUser(current);
 			Iterator<Tweet> itr_current = current_users_tweets.iterator();
 			while (itr_current.hasNext()) {
-				current.addTweet(itr_current.next());
+				//current.addTweet(itr_current.next());
 			}
 			addTweetsToFiles(current_users_tweets, "protweets.txt");
 		}
 
-		// write tweets to .txt-Files
 
 	}
 
