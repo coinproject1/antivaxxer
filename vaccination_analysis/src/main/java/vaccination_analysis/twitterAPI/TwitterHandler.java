@@ -17,11 +17,12 @@ public class TwitterHandler {
 
 	public static List<Tweet> getTweetsFromUser(String username) {
 
+		System.out.println("getTweetsFromUser: " + username);
 		Twitter twitter = TwitterFactory.getSingleton();
 		List<Status> statuses = new ArrayList();
 		ArrayList<Tweet> tweets = new ArrayList();
 		try {
-			statuses = twitter.getUserTimeline("username");
+			statuses = twitter.getUserTimeline(username);
 			for (Status status : statuses) {
 				Tweet tweet = new Tweet(status.getText(), status
 						.getGeoLocation().toString(), status.getCreatedAt());

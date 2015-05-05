@@ -1,6 +1,5 @@
 package vaccination_analysis.start;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
