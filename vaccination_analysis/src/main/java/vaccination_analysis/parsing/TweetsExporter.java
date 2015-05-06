@@ -62,4 +62,14 @@ public class TweetsExporter {
 		
 	}
 
+	public void addTweetToFiles(String message, String filename) throws IOException {
+		
+		String relative_filename = "src/main/resources/TwittererTextFiles/" + filename;
+		BufferedWriter output = new BufferedWriter(new FileWriter(relative_filename, true));
+		output.append(message);
+  		output.newLine();
+  		output.close();
+		
+	}
+
 }
