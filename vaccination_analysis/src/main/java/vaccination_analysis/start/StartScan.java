@@ -4,34 +4,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import vaccination_analysis.models.Tweet;
-import vaccination_analysis.models.Twitterer;
 import vaccination_analysis.parsing.TweetsExporter;
 import vaccination_analysis.parsing.UsernamesReader;
 import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class StartScan {
 
-	static UsernamesReader usernamesReader = new UsernamesReader();
-	TwitterHandler twitterHandler = new TwitterHandler();
-	static List<Twitterer> antivaxxerList = new ArrayList();
-	static List<Twitterer> provaxxerList = new ArrayList();
-	static TweetsExporter tweetsExporter = new TweetsExporter();
-	static List<Tweet> antivaxxerTweets;
-	static List<Tweet> provaxxerTweets;
+	static private UsernamesReader usernamesReader = new UsernamesReader();
+	private TwitterHandler twitterHandler = new TwitterHandler();
+	static private List<String> antivaxxerList = new ArrayList();
+	static private List<String> provaxxerList = new ArrayList();
+	static private TweetsExporter tweetsExporter = new TweetsExporter();
+	static private List<String> antivaxxerTweets;
+	static private List<String> provaxxerTweets;
 
 	public static void main(String... aArguments) throws IOException {
 
+		getTweetsFromTwitterers();
 		createTwitteresFromFiles();
 		getTweetsFromTwitterers();
-		writeTweetsToFiles();
-
-	}
-
-	private static void writeTweetsToFiles() throws IOException {
-		addTweetsToFiles(antivaxxerTweets, "antitweets.txt");
-		addTweetsToFiles(provaxxerTweets, "protweets.txt");
 
 	}
 
@@ -48,16 +39,14 @@ public class StartScan {
 
 		while (itr_anti.hasNext()) {
 			String twitterername = itr_anti.next();
-			Twitterer twitterer = new Twitterer(twitterername);
-			antivaxxerList.add(twitterer);
-			System.out.println("twitterer anti added: " + twitterer.getName());
+			antivaxxerList.add(twitterername);
+			System.out.println("twitterer anti added: " + twitterername);
 
 		}
 		while (itr_pro.hasNext()) {
 			String twitterername = itr_pro.next();
-			Twitterer twitterer = new Twitterer(twitterername);
-			provaxxerList.add(twitterer);
-			System.out.println("twitterer pro added: " + twitterer.getName());
+			provaxxerList.add(twitterername);
+			System.out.println("twitterer pro added: " + twitterername);
 		}
 
 	}
@@ -66,54 +55,59 @@ public class StartScan {
 
 		// get Tweets for every Twitterer
 
-		Iterator<Twitterer> itr_antitw = antivaxxerList.iterator();
-		Iterator<Twitterer> itr_protw = provaxxerList.iterator();
+		Iterator<String> itr_antitw = antivaxxerList.iterator();
+		Iterator<String> itr_protw = provaxxerList.iterator();
 
 		while (itr_antitw.hasNext()) {
-			Twitterer currentTwitterer = itr_antitw.next();
+			String currentTwitterer = itr_antitw.next();
 			antivaxxerTweets = getTweetsFromUser(currentTwitterer);
 
-			Iterator<Tweet> itr_currentTwitterersTweets = antivaxxerTweets
+			Iterator<String> itr_currentTwitterersTweets = antivaxxerTweets
 					.iterator();
 
 			while (itr_currentTwitterersTweets.hasNext()) {
-				Tweet currentTweet = itr_currentTwitterersTweets.next();
-				System.out.println("message from " + currentTwitterer.getName()
-						+ ": " + currentTweet.getMessage());
-				// currentTwitterer.addTweet(currentTweet);
-				addTweetToFiles(currentTweet.getMessage(), "antitweets.txt");
+				String currentTweet = itr_currentTwitterersTweets.next();
+				System.out.println("message from " + currentTwitterer + ": "
+						+ currentTweet);
+				addTweetToFiles(currentTweet, "antitweets.txt");
 			}
 
 		}
 		while (itr_protw.hasNext()) {
-			Twitterer currentTwitterer = itr_antitw.next();
+			String currentTwitterer = itr_protw.next();
 			provaxxerTweets = getTweetsFromUser(currentTwitterer);
 
-			Iterator<Tweet> itr_currentTwitterersTweets = provaxxerTweets
+			Iterator<String> itr_currentTwitterersTweets = provaxxerTweets
 					.iterator();
 
 			while (itr_currentTwitterersTweets.hasNext()) {
-				Tweet currentTweet = itr_currentTwitterersTweets.next();
-				System.out.println("message from " + currentTwitterer.getName()
-						+ ": " + currentTweet.getMessage());
-				// currentTwitterer.addTweet(currentTweet);
-				addTweetToFiles(currentTweet.getMessage(), "protweets.txt");
+				String currentTweet = itr_currentTwitterersTweets.next();
+				System.out.println("message from " + currentTwitterer + ": "
+						+ currentTweet);
+				addTweetToFiles(currentTweet, "protweets.txt");
 			}
 		}
 	}
 
-	private static void addTweetToFiles(String message, String filename) throws IOException {
+	private static void addTweetToFiles(String message, String filename)
+			throws IOException {
 
 		tweetsExporter.addTweetToFiles(message, filename);
 	}
 
-	private static List<Tweet> getTweetsFromUser(Twitterer user) {
-		return TwitterHandler.getTweetsFromUser(user.getName());
+	private static List<String> getTweetsFromUser(String user) {
+		return TwitterHandler.getTweetsFromUser(user);
 
 	}
 
-	private static void addTweetsToFiles(List<Tweet> tweetList, String filename)
+	private static void addTweetsToFiles(List<String> tweetList, String filename)
 			throws IOException {
 		tweetsExporter.addTweetsToFile(tweetList, filename);
+	}
+
+	private static void writeTweetsToFiles() throws IOException {
+		addTweetsToFiles(antivaxxerTweets, "antitweets.txt");
+		addTweetsToFiles(provaxxerTweets, "protweets.txt");
+
 	}
 }

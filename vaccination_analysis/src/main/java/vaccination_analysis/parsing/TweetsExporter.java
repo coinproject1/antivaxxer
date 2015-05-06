@@ -10,8 +10,6 @@ import java.io.OutputStreamWriter;
 import java.util.Iterator;
 import java.util.List;
 
-import vaccination_analysis.models.Tweet;
-
 public class TweetsExporter {
 	
 	private static final File antitweets = new File(
@@ -19,7 +17,7 @@ public class TweetsExporter {
 	private static final File protweets = new File(
 			"src/main/resources/TwittererTextFiles/protweets.txt");
 	
-	public void writeFileFromTweetsList(List<Tweet> tweetList, String filename) throws IOException {
+	public void writeFileFromTweetsList(List<String> tweetList, String filename) throws IOException {
 		
 		File fout = new File(filename);
 		FileOutputStream fos = new FileOutputStream(fout);
@@ -27,10 +25,10 @@ public class TweetsExporter {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	 
 		
-		Iterator<Tweet> iter = tweetList.iterator();
+		Iterator<String> iter = tweetList.iterator();
 		while (iter.hasNext()) {
 			
-			bw.write(iter.next().toString());
+			bw.write(iter.next());
 			bw.newLine();
 		}
 	 
@@ -38,7 +36,7 @@ public class TweetsExporter {
 		
 	}
 
-	public void addTweetsToFile(List<Tweet> tweetList, String filename) throws IOException {
+	public void addTweetsToFile(List<String> tweetList, String filename) throws IOException {
 
 	      if ((filename == "protweets.txt" && !protweets.exists()) || (filename == "antitweets.txt" && !antitweets.exists())) {
 	    	  writeFileFromTweetsList(tweetList, filename);
@@ -49,10 +47,10 @@ public class TweetsExporter {
 	  		BufferedWriter output = new BufferedWriter(new FileWriter(filename, true));
 	  	 
 	  		
-	  		Iterator<Tweet> iter = tweetList.iterator();
+	  		Iterator<String> iter = tweetList.iterator();
 	  		while (iter.hasNext()) {
 	  			
-	  			output.append(iter.next().toString());
+	  			output.append(iter.next());
 	  			output.newLine();
 	  		}
 	  	 
