@@ -10,7 +10,7 @@ import twitter4j.TwitterFactory;
 
 public class TwitterHandler {
 
-
+	//returns tweets from a certain user
 	public static List<String> getTweetsFromUser(String username) {
 
 		System.out.println("getTweetsFromUser: " + username);
@@ -18,7 +18,9 @@ public class TwitterHandler {
 		List<Status> statuses = new ArrayList();
 		ArrayList<String> tweets = new ArrayList();
 		try {
+			//receice statuses from certain username
 			statuses = twitter.getUserTimeline(username);
+			//save every tweet
 			for (Status status : statuses) {
 				String tweet = status.getText();
 				try {
@@ -31,7 +33,7 @@ public class TwitterHandler {
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
-
+		//return saved tweets
 		return tweets;
 	}
 }

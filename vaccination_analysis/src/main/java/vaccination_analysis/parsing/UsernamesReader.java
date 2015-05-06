@@ -10,15 +10,18 @@ public class UsernamesReader {
 			"src/main/resources/TwittererTextFiles/antivaxxers.txt");
 	private static final File provaxxers = new File(
 			"src/main/resources/TwittererTextFiles/provaxxers.txt");
-	
+
+	@SuppressWarnings("static-access")
 	public List<String> getAntivaxxers() {
 		return this.getUserNamesFromFile(antivaxxers);
 	}
-	
+
+	@SuppressWarnings("static-access")
 	public List<String> getProvaxxers() {
 		return this.getUserNamesFromFile(provaxxers);
 	}
 
+	// returns a list of usernames that are stored in a file
 	static public List<String> getUserNamesFromFile(File aFile) {
 
 		// ...checks on aFile are elided
@@ -47,20 +50,5 @@ public class UsernamesReader {
 		}
 
 		return result;
-	}
-
-	/** Simple test. */
-	public static void main(String... aArguments) throws IOException {
-
-//		File antivaxxers = new File(
-//				"src/main/resources/TwittererTextFiles/antivaxxers.txt");
-//		File provaxxers = new File(
-//				"src/main/resources/TwittererTextFiles/provaxxers.txt");
-		System.out.println("Original file antivaxxers absolute Path:"
-				+ antivaxxers.getAbsolutePath());
-		System.out.println("Original file provaxxers absolute Path:"
-				+ provaxxers.getAbsolutePath());
-		System.out.println(getUserNamesFromFile(antivaxxers));
-		System.out.println(getUserNamesFromFile(provaxxers));
 	}
 }
