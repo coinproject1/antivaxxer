@@ -1,6 +1,7 @@
 package vaccination_analysis.start;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,8 +12,8 @@ import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class CreateTwitterers {
 
-	private static List<Antivaxxer> antivaxxers;
-	private static List<Provaxxer> provaxxers;
+	private static List<Antivaxxer> antivaxxers = new ArrayList<Antivaxxer>();
+	private static List<Provaxxer> provaxxers = new ArrayList<Provaxxer>();
 	private static UsernamesReader ureader = new UsernamesReader();
 	private static TwitterHandler twitterHandler = new TwitterHandler();
 
@@ -24,6 +25,7 @@ public class CreateTwitterers {
 		getTweetsFromTwitterers(antivaxxers, provaxxers);
 	}
 
+	@SuppressWarnings("static-access")
 	private static void getTweetsFromTwitterers(List<Antivaxxer> antivaxxers,
 			List<Provaxxer> provaxxers) {
 
@@ -32,13 +34,15 @@ public class CreateTwitterers {
 
 		while (antivaxxerIterator.hasNext()) {
 			Antivaxxer antivaxxer = antivaxxerIterator.next();
-			antivaxxer.AddTweets(twitterHandler.getTweetsFromUser(antivaxxer
+			antivaxxer.addTweets(twitterHandler.getTweetsFromUser(antivaxxer
 					.getUsername()));
+			System.out.println("############ " + antivaxxer.toString());
 		}
 		while (provaxxerIterator.hasNext()) {
 			Provaxxer provaxxer = provaxxerIterator.next();
-			provaxxer.AddTweets(twitterHandler.getTweetsFromUser(provaxxer
+			provaxxer.addTweets(twitterHandler.getTweetsFromUser(provaxxer
 					.getUsername()));
+			System.out.println("############ " + provaxxer.toString());
 		}
 
 	}
@@ -58,11 +62,13 @@ public class CreateTwitterers {
 				Antivaxxer antivaxxer = new Antivaxxer(username,
 						twitterHandler.getFollowers(username),
 						twitterHandler.getFriends(username));
+				System.out.println("antivaxxer: " + username);
 				antivaxxers.add(antivaxxer);
 			} else {
 				Provaxxer provaxxer = new Provaxxer(username,
 						twitterHandler.getFollowers(username),
 						twitterHandler.getFriends(username));
+				System.out.println("provaxxer: " + provaxxer.getUsername());
 				provaxxers.add(provaxxer);
 			}
 		}

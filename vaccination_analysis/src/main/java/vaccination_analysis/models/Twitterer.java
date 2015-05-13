@@ -1,11 +1,12 @@
 package vaccination_analysis.models;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 abstract class Twitterer {
 
-	private List<String> tweets;
+	private List<String> tweets = new ArrayList<String>();
 	private String username;
 	private int followers = 0;
 
@@ -15,7 +16,7 @@ abstract class Twitterer {
 		this.friends = friends;
 	}
 
-	public void AddTweets(List<String> tweetsFromUser) {
+	public void addTweets(List<String> tweetsFromUser) {
 		if (tweets.size() != 0) {
 			this.tweets.clear();
 		}
@@ -23,6 +24,10 @@ abstract class Twitterer {
 
 	}
 	
+	@Override
+	public String toString() {
+		return "username is: " + username + " and he got " + tweets.size() + " tweets.";
+	}
 	public String getTweetsAsOneString() {
 		String result = "";
 		Iterator<String> iter = tweets.iterator();
@@ -59,35 +64,35 @@ abstract class Twitterer {
 		return this.tweets.size();
 	}
 
-	// TODO implement methods
+	// TODO implement method
 	public int messagesFavorited() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int meanNumberOfHashtagsInTweet() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int meanNumberOfMentionsInTweet() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int meanTextLength() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int numerOfTweetsRetweetedByUser() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int numberOfDaysOnTwitter() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int numberOfMessagesFavorited() {
 		return 0;
 	}
-
+	// TODO implement method
 	public int meanNumberOfUrlsInTweet() {
 		return 0;
 	}
