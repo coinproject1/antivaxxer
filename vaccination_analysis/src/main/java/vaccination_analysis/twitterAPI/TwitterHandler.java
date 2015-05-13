@@ -36,4 +36,35 @@ public class TwitterHandler {
 		//return saved tweets
 		return tweets;
 	}
+
+	public int getFollowers(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getFriends(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+//	public getTweeterDetails(String username) {
+//		Twitter twitter = TwitterFactory.getSingleton();
+//		try {
+//			//receice statuses from certain username
+//			twitter.get;
+//			//save every tweet
+//			for (Status status : statuses) {
+//				String tweet = status.getText();
+//				try {
+//					tweets.add(tweet);
+//				}
+//				catch (NullPointerException n) {
+//					System.out.println("tweet was null");
+//				}
+//			}
+//		} catch (TwitterException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
 }
