@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import vaccination_analysis.twitterAPI.TwitterHandler;
+
 abstract class Twitterer {
 
 	private List<String> tweets = new ArrayList<String>();
@@ -65,36 +67,44 @@ abstract class Twitterer {
 	}
 
 	// TODO implement method
-	public int messagesFavorited() {
-		return 0;
+	public int messagesFavorited() {		
+		return TwitterHandler.getMessagesFavorited(this.username);
 	}
 	// TODO implement method
 	public int meanNumberOfHashtagsInTweet() {
-		return 0;
+		return TwitterHandler.getmeanNumberOfHashtagsInTweet(this.username);
 	}
 	// TODO implement method
 	public int meanNumberOfMentionsInTweet() {
-		return 0;
+		return TwitterHandler.meanNumberOfMentionsInTweet(this.username);
 	}
 	// TODO implement method
-	public int meanTextLength() {
-		return 0;
+	public float meanTextLength() {
+		return (this.getTweetsAsOneString().length() / this.tweets.size());
 	}
 	// TODO implement method
 	public int numerOfTweetsRetweetedByUser() {
-		return 0;
+		return TwitterHandler.numerOfTweetsRetweetedByUser(this.username);
 	}
 	// TODO implement method
 	public int numberOfDaysOnTwitter() {
-		return 0;
+		return TwitterHandler.numberOfDaysOnTwitter(this.username);
 	}
 	// TODO implement method
 	public int numberOfMessagesFavorited() {
-		return 0;
+		return TwitterHandler.numberOfMessagesFavorited(this.username);
 	}
 	// TODO implement method
 	public int meanNumberOfUrlsInTweet() {
-		return 0;
+		Iterator<String> iter = tweets.iterator();
+		int count = 0;
+		while (iter.hasNext()) {
+			String string = iter.next();
+			if (string.contains("http://") || string.contains("www")) {
+				count+=1;
+			}
+		}
+		return count;
 	}
 
 }

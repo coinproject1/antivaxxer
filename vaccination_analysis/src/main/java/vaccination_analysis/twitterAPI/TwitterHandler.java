@@ -10,7 +10,7 @@ import twitter4j.TwitterFactory;
 
 public class TwitterHandler {
 
-	//returns tweets from a certain user
+	// returns tweets from a certain user
 	public static List<String> getTweetsFromUser(String username) {
 
 		System.out.println("getTweetsFromUser: " + username);
@@ -18,53 +18,77 @@ public class TwitterHandler {
 		List<Status> statuses = new ArrayList();
 		ArrayList<String> tweets = new ArrayList();
 		try {
-			//receice statuses from certain username
+			// receice statuses from certain username
 			statuses = twitter.getUserTimeline(username);
-			//save every tweet
+			// save every tweet
 			for (Status status : statuses) {
 				String tweet = status.getText();
 				try {
 					tweets.add(tweet);
-				}
-				catch (NullPointerException n) {
+				} catch (NullPointerException n) {
 					System.out.println("tweet was null");
 				}
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
-		//return saved tweets
+		// return saved tweets
 		return tweets;
 	}
 
 	public int getFollowers(String username) {
+		Twitter twitter = TwitterFactory.getSingleton();
+		int result = 0;
+		try {
+			result = twitter.getFollowersIDs(username, -1).getIDs().length;
+
+		} catch (TwitterException e) {
+			e.printStackTrace();
+			System.out.println(username + "'s Followers could not be counted");
+		}
+		return result;
+	}
+
+	public int getFriends(String username) {
+		Twitter twitter = TwitterFactory.getSingleton();
+		int result = 0;
+		try {
+			result = twitter.getFriendsIDs(username, -1).getIDs().length;
+
+		} catch (TwitterException e) {
+			e.printStackTrace();
+			System.out.println(username + "'s Friends could not be counted");
+		}
+		return result;
+	}
+
+	public static int getMessagesFavorited(String username) {
+		return 0;		
+	}
+
+	public static int getmeanNumberOfHashtagsInTweet(String username) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int getFriends(String username) {
+	public static int meanNumberOfMentionsInTweet(String username) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-//	public getTweeterDetails(String username) {
-//		Twitter twitter = TwitterFactory.getSingleton();
-//		try {
-//			//receice statuses from certain username
-//			twitter.get;
-//			//save every tweet
-//			for (Status status : statuses) {
-//				String tweet = status.getText();
-//				try {
-//					tweets.add(tweet);
-//				}
-//				catch (NullPointerException n) {
-//					System.out.println("tweet was null");
-//				}
-//			}
-//		} catch (TwitterException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
+
+	public static int numerOfTweetsRetweetedByUser(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int numberOfDaysOnTwitter(String username) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int numberOfMessagesFavorited(String username) {
+		return 0;
+		// TODO Auto-generated method stub
+		
+	}
 }
