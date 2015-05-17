@@ -25,17 +25,19 @@ abstract class Twitterer {
 		this.tweets.addAll(tweetsFromUser);
 
 	}
-	
+
 	@Override
 	public String toString() {
-		return "username is: " + username + " and he got " + tweets.size() + " tweets.";
+		return "username is: " + username + " and he got " + tweets.size()
+				+ " tweets.";
 	}
+
 	public String getTweetsAsOneString() {
 		String result = "";
 		Iterator<String> iter = tweets.iterator();
-		
+
 		while (iter.hasNext()) {
-			result+=iter.next();
+			result += iter.next();
 		}
 		return result;
 	}
@@ -66,42 +68,87 @@ abstract class Twitterer {
 		return this.tweets.size();
 	}
 
-	// TODO implement method
-	public int messagesFavorited() {		
-		return TwitterHandler.getMessagesFavorited(this.username);
-	}
-	// TODO implement method
 	public int meanNumberOfHashtagsInTweet() {
-		return TwitterHandler.getmeanNumberOfHashtagsInTweet(this.username);
+		Iterator<String> iter = tweets.iterator();
+		int count = 0;
+		while (iter.hasNext()) {
+			String string = iter.next();
+			char c = '#';
+			char[] tempArray = string.toCharArray(); // mach den String zu einem
+														// Char-Array
+
+			for (int i = 0; i < tempArray.length; i++) {
+				if (tempArray[i] == c) {
+					count++;
+				}
+			}
+		}
+		return count;
 	}
+
 	// TODO implement method
 	public int meanNumberOfMentionsInTweet() {
-		return TwitterHandler.meanNumberOfMentionsInTweet(this.username);
+		Iterator<String> iter = tweets.iterator();
+		int count = 0;
+		while (iter.hasNext()) {
+			String string = iter.next();
+			countCharsequencesInString(string, '@');
+
+		}
+		return count;
 	}
+
 	// TODO implement method
 	public float meanTextLength() {
 		return (this.getTweetsAsOneString().length() / this.tweets.size());
 	}
-	// TODO implement method
-	public int numerOfTweetsRetweetedByUser() {
-		return TwitterHandler.numerOfTweetsRetweetedByUser(this.username);
-	}
+
 	// TODO implement method
 	public int numberOfDaysOnTwitter() {
 		return TwitterHandler.numberOfDaysOnTwitter(this.username);
 	}
+
 	// TODO implement method
 	public int numberOfMessagesFavorited() {
 		return TwitterHandler.numberOfMessagesFavorited(this.username);
 	}
+
 	// TODO implement method
 	public int meanNumberOfUrlsInTweet() {
 		Iterator<String> iter = tweets.iterator();
 		int count = 0;
 		while (iter.hasNext()) {
 			String string = iter.next();
-			if (string.contains("http://") || string.contains("www")) {
-				count+=1;
+			count += searchForHttp(string);
+
+		}
+		return count;
+	}
+
+	private int searchForHttp(String string) {
+		int count = 0;
+		char[] tempArray = string.toCharArray();
+		for (int i = 0; i < tempArray.length; i++) {
+			if (tempArray[i] == 'h' && tempArray.length >= i + 12) {
+				if (tempArray[i + 1] == 't' && tempArray[i + 2] == 't'
+						&& tempArray[i + 3] == 'p' && tempArray[i + 4] == ':'
+						&& tempArray[i + 6] == '/' && tempArray[i + 6] == '/')
+					;
+				count += 1;
+				i += 12;
+			}
+		}
+		return count;
+
+	}
+
+	private int countCharsequencesInString(String string, char c) {
+		int count = 0;
+		char[] tempArray = string.toCharArray();
+
+		for (int i = 0; i < tempArray.length; i++) {
+			if (tempArray[i] == c) {
+				count++;
 			}
 		}
 		return count;

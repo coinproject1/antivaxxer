@@ -1,6 +1,7 @@
 package vaccination_analysis.twitterAPI;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import twitter4j.Status;
@@ -40,7 +41,7 @@ public class TwitterHandler {
 		Twitter twitter = TwitterFactory.getSingleton();
 		int result = 0;
 		try {
-			result = twitter.getFollowersIDs(username, -1).getIDs().length;
+			result =  twitter.showUser(username).getFollowersCount();
 
 		} catch (TwitterException e) {
 			e.printStackTrace();
@@ -53,7 +54,7 @@ public class TwitterHandler {
 		Twitter twitter = TwitterFactory.getSingleton();
 		int result = 0;
 		try {
-			result = twitter.getFriendsIDs(username, -1).getIDs().length;
+			result =  twitter.showUser(username).getFriendsCount();
 
 		} catch (TwitterException e) {
 			e.printStackTrace();
@@ -62,33 +63,29 @@ public class TwitterHandler {
 		return result;
 	}
 
-	public static int getMessagesFavorited(String username) {
-		return 0;		
-	}
-
-	public static int getmeanNumberOfHashtagsInTweet(String username) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public static int meanNumberOfMentionsInTweet(String username) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public static int numerOfTweetsRetweetedByUser(String username) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public static int numberOfDaysOnTwitter(String username) {
-		// TODO Auto-generated method stub
-		return 0;
+		Twitter twitter = TwitterFactory.getSingleton();
+		Date date;
+		try {
+			date = twitter.showUser(username).getCreatedAt();
+			Date today = new Date();
+			return (int) ((today.getTime() - date.getTime()) / 86400000);
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	public static int numberOfMessagesFavorited(String username) {
-		return 0;
-		// TODO Auto-generated method stub
-		
+		Twitter twitter = TwitterFactory.getSingleton();
+		try {
+			return twitter.showUser(username).getFavouritesCount();
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+
 	}
 }
