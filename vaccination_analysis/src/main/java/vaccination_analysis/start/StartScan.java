@@ -1,8 +1,11 @@
 package vaccination_analysis.start;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import vaccination_analysis.parsing.TweetsExporter;
 import vaccination_analysis.parsing.UsernamesReader;
 import vaccination_analysis.twitterAPI.TwitterHandler;
@@ -26,7 +29,39 @@ public class StartScan {
 		getTweetsFromTwitterers();
 
 	}
-
+	//
+	private static void exportListToCSV() {
+		try
+		{
+		    FileWriter writer = new FileWriter("src/main/resources/export.csv");
+	 
+	
+		    
+		    
+		   /* writer.append("Attr1");
+		    writer.append(',');
+		    writer.append("val1");
+		    writer.append('\n');
+	 
+		    writer.append("Attr2");
+		    writer.append(',');
+		    writer.append("val1");
+	        writer.append('\n');
+	 
+		    writer.append("Attr3");
+		    writer.append(',');
+		    writer.append("val1");
+		    writer.append('\n');
+	 */
+	 
+		    writer.flush();
+		    writer.close();
+		}
+		catch(IOException e){
+		     e.printStackTrace();
+		} 
+	}
+	
 	//
 	private static void createTwitteresFromFiles() {
 
