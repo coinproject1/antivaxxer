@@ -6,7 +6,7 @@ import java.util.List;
 
 import vaccination_analysis.twitterAPI.TwitterHandler;
 
-abstract class Twitterer {
+public class Twitterer {
 
 	private List<String> tweets = new ArrayList<String>();
 	private String username;
@@ -152,6 +152,10 @@ abstract class Twitterer {
 			}
 		}
 		return count;
+	}
+
+	public boolean isAntivaxxer() {
+		return false;
 	}
 
 }

@@ -6,6 +6,7 @@ public class Provaxxer extends Twitterer {
 		super(username, followers, friends);
 		
 	}
+	@Override
 	public boolean isAntivaxxer() {
 		return false;
 	}
