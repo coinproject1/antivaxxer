@@ -7,18 +7,24 @@ import java.util.List;
 
 import vaccination_analysis.models.ExcelExport;
 import vaccination_analysis.models.Twitterer;
+import vaccination_analysis.parsing.ExcelWriter;
 import vaccination_analysis.parsing.UsernamesReader;
 import vaccination_analysis.services.ExcelExportFactory;
 import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class StartAnalysis {
 
+	private static final int INT_MAX_REQUESTS = 10;
 	private static List<Twitterer> twitterers = new ArrayList<Twitterer>();
 	private static List<ExcelExport> excelExports = new ArrayList<ExcelExport>();
 	private static ExcelExportFactory excelExportFactory = new ExcelExportFactory();
 	private static UsernamesReader ureader = new UsernamesReader();
 	private static TwitterHandler twitterHandler = new TwitterHandler();
+	private static ExcelWriter excelWriter = new ExcelWriter();
 
+	
+	//23 requests per twitterer
+	//INT_MAX_REQUESTS defines how much twitterers will be scanned
 	public static void main(String... aArguments) throws IOException {
 
 		// first create a list of twitterers stored in a .txt file 
@@ -35,7 +41,7 @@ public class StartAnalysis {
 	}
 
 	private static void exportToCVS() {
-		// TODO Auto-generated method stub
+		excelWriter.writeFile("vaccination_analysis", excelExports);
 
 	}
 
@@ -54,6 +60,7 @@ public class StartAnalysis {
 			twitterer.addTweets(twitterHandler.getTweetsFromUser(twitterer
 					.getUsername()));
 			System.out.println("############ " + twitterer.toString());
+
 		}
 
 	}
@@ -67,15 +74,17 @@ public class StartAnalysis {
 	private static void createTwitterers(List<String> usernames,
 			boolean isAntivaxxer) {
 		Iterator<String> iter = usernames.iterator();
-		while (iter.hasNext()) {
+		//TODO
+		int i = 0;
+		while (iter.hasNext() && i <=INT_MAX_REQUESTS) {
 			String username = iter.next();
 				Twitterer antivaxxer = new Twitterer(
 						twitterHandler.getUserId(username), username, isAntivaxxer,
 						twitterHandler.getFollowers(username),
 						twitterHandler.getFriends(username));
-				System.out.println("antivaxxer: " + username);
+				System.out.println("Twitterer #" + i + ": " + username);
 				twitterers.add(antivaxxer);
-			
+			i++;
 		}
 
 	}

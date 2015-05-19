@@ -1,4 +1,4 @@
-package vaccination_analysis.parsing;
+package vaccination_analysis.oldclasses;
 
 import java.io.FileWriter;
 import java.io.IOException;
