@@ -8,14 +8,19 @@ import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class Twitterer {
 
+	private long userId;
 	private List<String> tweets = new ArrayList<String>();
 	private String username;
 	private int followers = 0;
+	private boolean isAntivaxxer = false;
 
-	public Twitterer(String username, int followers, int friends) {
+	public Twitterer(long userId, String username, boolean isAntivaxxer, int followers, int friends) {
 		this.username = username;
 		this.followers = followers;
 		this.friends = friends;
+		this.userId = userId;
+		this.isAntivaxxer = isAntivaxxer;
+		
 	}
 
 	public void addTweets(List<String> tweetsFromUser) {
@@ -155,7 +160,11 @@ public class Twitterer {
 	}
 
 	public boolean isAntivaxxer() {
-		return false;
+		return this.isAntivaxxer;
+	}
+
+	public long getUserId() {
+		return userId;
 	}
 
 }

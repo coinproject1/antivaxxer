@@ -88,4 +88,15 @@ public class TwitterHandler {
 		return -1;
 
 	}
+
+	public long getUserId(String username) {
+		Twitter twitter = TwitterFactory.getSingleton();
+		try {
+			return twitter.showUser(username).getId();
+		} catch (TwitterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }
