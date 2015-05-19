@@ -74,17 +74,14 @@ public class StartAnalysis {
 	private static void createTwitterers(List<String> usernames,
 			boolean isAntivaxxer) {
 		Iterator<String> iter = usernames.iterator();
-		//TODO
-		int i = 0;
-		while (iter.hasNext() && i <=INT_MAX_REQUESTS) {
+		while (iter.hasNext()) {
 			String username = iter.next();
 				Twitterer antivaxxer = new Twitterer(
 						twitterHandler.getUserId(username), username, isAntivaxxer,
 						twitterHandler.getFollowers(username),
 						twitterHandler.getFriends(username));
-				System.out.println("Twitterer #" + i + ": " + username);
+				System.out.println("Twitterer: " + username);
 				twitterers.add(antivaxxer);
-			i++;
 		}
 
 	}
