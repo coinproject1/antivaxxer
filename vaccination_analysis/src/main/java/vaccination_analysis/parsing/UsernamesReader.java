@@ -11,21 +11,11 @@ public class UsernamesReader {
 	private static final File provaxxers = new File(
 			"src/main/resources/TwittererTextFiles/provaxxers.txt");
 
-	@SuppressWarnings("static-access")
-	public List<String> getAntivaxxers() {
-		return this.getUserNamesFromFile(antivaxxers);
-	}
-
-	@SuppressWarnings("static-access")
-	public List<String> getProvaxxers() {
-		return this.getUserNamesFromFile(provaxxers);
-	}
-
 	// returns a list of usernames that are stored in a file
 	static public List<String> getUserNamesFromFile(File aFile) {
 
 		// ...checks on aFile are elided
-		List<String> result = new ArrayList();
+		List<String> result = new ArrayList<String>();
 
 		try {
 			// use buffering, reading one line at a time
@@ -50,5 +40,15 @@ public class UsernamesReader {
 		}
 
 		return result;
+	}
+
+	@SuppressWarnings("static-access")
+	public List<String> getAntivaxxers() {
+		return this.getUserNamesFromFile(antivaxxers);
+	}
+
+	@SuppressWarnings("static-access")
+	public List<String> getProvaxxers() {
+		return this.getUserNamesFromFile(provaxxers);
 	}
 }

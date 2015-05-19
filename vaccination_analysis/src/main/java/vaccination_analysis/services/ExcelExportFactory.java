@@ -36,7 +36,7 @@ public class ExcelExportFactory {
 	private ExcelExport getExcelExport(Twitterer t) {
 
 		float[] f = fs.getResultArray(t);
-		return new ExcelExport(t.getUsername(), t.isAntivaxxer(),
+		return new ExcelExport(t.getUserId(),t.getUsername(), t.isAntivaxxer(),
 				t.getFriends(), t.getFollowers(),
 				t.meanNumberOfMentionsInTweet(),
 				t.meanNumberOfHashtagsInTweet(), t.meanNumberOfUrlsInTweet(),

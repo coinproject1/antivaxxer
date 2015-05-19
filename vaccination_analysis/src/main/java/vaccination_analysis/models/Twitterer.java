@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import vaccination_analysis.textmining.StringUtilities;
 import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class Twitterer {
@@ -78,47 +79,35 @@ public class Twitterer {
 		int count = 0;
 		while (iter.hasNext()) {
 			String string = iter.next();
-			char c = '#';
-			char[] tempArray = string.toCharArray(); // mach den String zu einem
-														// Char-Array
+			count += countCharInString(string, '#');
 
-			for (int i = 0; i < tempArray.length; i++) {
-				if (tempArray[i] == c) {
-					count++;
-				}
-			}
 		}
 		return count;
 	}
 
-	// TODO implement method
 	public int meanNumberOfMentionsInTweet() {
 		Iterator<String> iter = tweets.iterator();
 		int count = 0;
 		while (iter.hasNext()) {
 			String string = iter.next();
-			countCharsequencesInString(string, '@');
+			count += countCharInString(string, '@');
 
 		}
 		return count;
 	}
 
-	// TODO implement method
 	public float meanTextLength() {
 		return (this.getTweetsAsOneString().length() / this.tweets.size());
 	}
 
-	// TODO implement method
 	public int numberOfDaysOnTwitter() {
 		return TwitterHandler.numberOfDaysOnTwitter(this.username);
 	}
 
-	// TODO implement method
 	public int numberOfMessagesFavorited() {
 		return TwitterHandler.numberOfMessagesFavorited(this.username);
 	}
 
-	// TODO implement method
 	public int meanNumberOfUrlsInTweet() {
 		Iterator<String> iter = tweets.iterator();
 		int count = 0;
@@ -131,32 +120,14 @@ public class Twitterer {
 	}
 
 	private int searchForHttp(String string) {
-		int count = 0;
-		char[] tempArray = string.toCharArray();
-		for (int i = 0; i < tempArray.length; i++) {
-			if (tempArray[i] == 'h' && tempArray.length >= i + 12) {
-				if (tempArray[i + 1] == 't' && tempArray[i + 2] == 't'
-						&& tempArray[i + 3] == 'p' && tempArray[i + 4] == ':'
-						&& tempArray[i + 6] == '/' && tempArray[i + 6] == '/')
-					;
-				count += 1;
-				i += 12;
-			}
-		}
-		return count;
+		StringUtilities su = new StringUtilities();
+		return su.searchForHttp(string);
 
 	}
 
-	private int countCharsequencesInString(String string, char c) {
-		int count = 0;
-		char[] tempArray = string.toCharArray();
-
-		for (int i = 0; i < tempArray.length; i++) {
-			if (tempArray[i] == c) {
-				count++;
-			}
-		}
-		return count;
+	private int countCharInString(String string, char c) {
+		StringUtilities su = new StringUtilities();
+		return su.countCharSequence(string, c);
 	}
 
 	public boolean isAntivaxxer() {

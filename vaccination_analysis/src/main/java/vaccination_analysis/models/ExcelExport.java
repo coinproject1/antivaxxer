@@ -2,9 +2,8 @@ package vaccination_analysis.models;
 
 // stores variables that can be exportet to Excel, Object created @ExcelExportFactory
 public class ExcelExport {
-	
-	
-	public ExcelExport(String username, boolean isAntivaxxer,
+
+	public ExcelExport(long id, String username, boolean isAntivaxxer,
 			int amountOfFriends, int amountOfFollowers,
 			float meanNumberOfMentions, float meanNumberOfHashstags,
 			float meanNumberOfHtmls, float meanTextLength, int messagesPosted,
@@ -17,6 +16,7 @@ public class ExcelExport {
 			float frequency_He, float frequency_Me, float frequency_On,
 			float frequency_But) {
 		super();
+		this.id = id;
 		this.username = username;
 		this.isAntivaxxer = isAntivaxxer;
 		this.amountOfFriends = amountOfFriends;
@@ -49,8 +49,9 @@ public class ExcelExport {
 		this.frequency_On = frequency_On;
 		this.frequency_But = frequency_But;
 	}
+
 	private String username;
-	
+	private long id;
 	private boolean isAntivaxxer;
 	private int amountOfFriends;
 	private int amountOfFollowers;
@@ -83,100 +84,132 @@ public class ExcelExport {
 	private float frequency_On;
 	private float frequency_But;
 
-
-
 	public String getUsername() {
 		return username;
 	}
+
 	public boolean isAntivaxxer() {
 		return isAntivaxxer;
 	}
+
 	public int getAmountOfFriends() {
 		return amountOfFriends;
 	}
+
 	public int getAmountOfFollowers() {
 		return amountOfFollowers;
 	}
+
 	public float getMeanNumberOfMentions() {
 		return meanNumberOfMentions;
 	}
+
 	public float getMeanNumberOfHashstags() {
 		return meanNumberOfHashstags;
 	}
+
 	public float getMeanNumberOfHtmls() {
 		return meanNumberOfHtmls;
 	}
+
 	public float getMeanTextLength() {
 		return meanTextLength;
 	}
+
 	public int getMessagesPosted() {
 		return messagesPosted;
 	}
+
 	public int getDaysOnTwitter() {
 		return daysOnTwitter;
 	}
+
 	public int getMessagesFavorited() {
 		return messagesFavorited;
 	}
+
 	public float getFrequency_I() {
 		return frequency_I;
 	}
+
 	public float getFrequency_The() {
 		return frequency_The;
 	}
+
 	public float getFrequency_And() {
 		return frequency_And;
 	}
+
 	public float getFrequency_To() {
 		return frequency_To;
 	}
+
 	public float getFrequency_A() {
 		return frequency_A;
 	}
+
 	public float getFrequency_Of() {
 		return frequency_Of;
 	}
+
 	public float getFrequency_That() {
 		return frequency_That;
 	}
+
 	public float getFrequency_In() {
 		return frequency_In;
 	}
+
 	public float getFrequency_It() {
 		return frequency_It;
 	}
+
 	public float getFrequency_My() {
 		return frequency_My;
 	}
+
 	public float getFrequency_Is() {
 		return frequency_Is;
 	}
+
 	public float getFrequency_You() {
 		return frequency_You;
 	}
+
 	public float getFrequency_Was() {
 		return frequency_Was;
 	}
+
 	public float getFrequency_For() {
 		return frequency_For;
 	}
+
 	public float getFrequency_Have() {
 		return frequency_Have;
 	}
+
 	public float getFrequency_With() {
 		return frequency_With;
 	}
+
 	public float getFrequency_He() {
 		return frequency_He;
 	}
+
 	public float getFrequency_Me() {
 		return frequency_Me;
 	}
+
 	public float getFrequency_On() {
 		return frequency_On;
 	}
+
 	public float getFrequency_But() {
 		return frequency_But;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 }
