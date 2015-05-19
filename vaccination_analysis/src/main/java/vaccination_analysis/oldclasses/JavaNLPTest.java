@@ -1,4 +1,4 @@
-package vaccination_analysis.textmining;
+package vaccination_analysis.oldclasses;
 
 import opennlp.tools.namefind.*;
 import opennlp.tools.postag.POSModel;

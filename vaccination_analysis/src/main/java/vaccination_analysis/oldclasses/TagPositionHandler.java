@@ -1,4 +1,4 @@
-package vaccination_analysis.textmining;
+package vaccination_analysis.oldclasses;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
