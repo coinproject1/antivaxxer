@@ -135,11 +135,11 @@ public class ExcelReader {
 		try {
 			Workbook workbook = Workbook.getWorkbook(file);
 			Sheet sheet = workbook.getSheet(0);
-
 			int amount_rows = sheet.getRows();
-			
-			for (int i = 1; i <= amount_rows; i++) {
-				result.add(Long.parseLong(sheet.getCell(0, i).getContents()));
+			for (int i = 1; i <= amount_rows-1; i++) {
+				Long id = Long.parseLong(sheet.getCell(1, i).getContents());
+				System.out.println("ID is " + id);
+				result.add(id);
 			} 
 		}
 		catch (Exception e)

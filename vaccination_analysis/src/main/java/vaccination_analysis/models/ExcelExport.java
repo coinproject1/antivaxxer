@@ -15,7 +15,6 @@ public class ExcelExport {
 			float frequency_For, float frequency_Have, float frequency_With,
 			float frequency_He, float frequency_Me, float frequency_On,
 			float frequency_But) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.isAntivaxxer = isAntivaxxer;

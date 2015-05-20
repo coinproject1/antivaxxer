@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import vaccination_analysis.models.ExcelExport;
 import vaccination_analysis.models.Twitterer;
@@ -38,7 +39,7 @@ public class StartAnalysis {
 
 	private static void exportToExcel() {
 		System.out.println("exportToExcel called");
-		excelWriter.writeFile("vaccination_analysis", excelExports);
+		excelWriter.writeFile("vaccination_analysis.xls", excelExports);
 		System.out.println("exportToExcel finished");
 
 	}
@@ -54,7 +55,6 @@ public class StartAnalysis {
 	private static void getTweetsFromTwitterers() {
 
 		Iterator<Twitterer> twittererIterator = twitterers.iterator();
-
 		while (twittererIterator.hasNext()) {
 			Twitterer twitterer = twittererIterator.next();
 			twitterer.addTweets(twitterHandler.getTweetsFromUser(twitterer

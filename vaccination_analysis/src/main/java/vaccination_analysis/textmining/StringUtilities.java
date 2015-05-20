@@ -36,7 +36,6 @@ public class StringUtilities {
 
 	public float getFrequency(List<String> tweets, WordVariable wv) {
 
-		System.out.println("getFrequency called");
 		switch (wv) {
 		case I:
 			return this.getFrequencyHelper(tweets, " i ");
@@ -89,7 +88,6 @@ public class StringUtilities {
 	}
 
 	public float getFrequencyHelper(List<String> tweets, String toSearchFor) {
-		System.out.println("getFrequencyHelper called");
 		float result = 0;
 		for (String s : tweets) {
 			result += getFrequency(s, toSearchFor);

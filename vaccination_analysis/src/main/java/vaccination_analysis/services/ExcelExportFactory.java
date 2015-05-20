@@ -17,7 +17,6 @@ public class ExcelExportFactory {
 		if (twittererList == null) {
 			System.out.println("twitterer-list is null");
 		}
-		System.out.println("getExcelExports called");
 		List<ExcelExport> result = new ArrayList<ExcelExport>();
 		Iterator<Twitterer> iter = twittererList.iterator();
 
@@ -34,7 +33,6 @@ public class ExcelExportFactory {
 
 	private ExcelExport getExcelExport(Twitterer t) {
 
-		System.out.println("getExcelExport called");
 		float[] f = fs.getResultArray(t);
 		return new ExcelExport(t.getUserId(), t.getUsername(),
 				t.isAntivaxxer(), t.getFriends(), t.getFollowers(),
