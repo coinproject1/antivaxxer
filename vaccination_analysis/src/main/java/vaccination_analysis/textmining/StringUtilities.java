@@ -1,6 +1,8 @@
 package vaccination_analysis.textmining;
 
+import java.util.Iterator;
 import java.util.List;
+
 import vaccination_analysis.models.WordVariable;
 
 public class StringUtilities {
@@ -99,9 +101,31 @@ public class StringUtilities {
 		return (result / stringListlength);
 	}
 	
-	//TODO
 	private int getWordCount(List<String> tweets) {
-		return 0;
+		Iterator<String> iter = tweets.iterator();
+		int wordCount = 0;
+		while (iter.hasNext()) {
+			String s = iter.next();
+			 boolean word = false;
+			    int endOfLine = s.length() - 1;
+
+			    for (int i = 0; i < s.length(); i++) {
+			        // if the char is a letter, word = true.
+			        if (Character.isLetter(s.charAt(i)) && i != endOfLine) {
+			            word = true;
+			            // if char isn't a letter and there have been letters before,
+			            // counter goes up.
+			        } else if (!Character.isLetter(s.charAt(i)) && word) {
+			            wordCount++;
+			            word = false;
+			            // last word of String; if it doesn't end with a non letter, it
+			            // wouldn't count without this.
+			        } else if (Character.isLetter(s.charAt(i)) && i == endOfLine) {
+			            wordCount++;
+			        }
+			    }
+		}
+	    return wordCount;
 		
 	}
 
