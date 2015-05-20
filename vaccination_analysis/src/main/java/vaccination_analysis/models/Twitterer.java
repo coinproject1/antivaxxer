@@ -97,6 +97,9 @@ public class Twitterer {
 	}
 
 	public float meanTextLength() {
+		if (this.tweets.size() == 0) {
+			return -1f;
+		}
 		return (this.getTweetsAsOneString().length() / this.tweets.size());
 	}
 

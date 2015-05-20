@@ -92,7 +92,11 @@ public class StringUtilities {
 		for (String s : tweets) {
 			result += getFrequency(s, toSearchFor);
 		}
-		return (result / getStringListLength(tweets));
+		int stringListlength = getStringListLength(tweets);
+		if (stringListlength == 0) {
+			return -1;
+		}
+		return (result / stringListlength);
 	}
 
 	private int getStringListLength(List<String> tweets) {
