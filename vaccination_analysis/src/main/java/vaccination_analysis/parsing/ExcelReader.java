@@ -113,8 +113,9 @@ public class ExcelReader {
 				excelExports.add(e);
 				System.out.println("read username " + e.getUsername());
 			}
+			workbook.close();
 			return excelExports;
-
+			
 		} catch (BiffException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

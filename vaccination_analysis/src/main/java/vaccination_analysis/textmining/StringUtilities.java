@@ -1,7 +1,6 @@
 package vaccination_analysis.textmining;
 
 import java.util.List;
-
 import vaccination_analysis.models.WordVariable;
 
 public class StringUtilities {
@@ -36,6 +35,8 @@ public class StringUtilities {
 	}
 
 	public float getFrequency(List<String> tweets, WordVariable wv) {
+
+		System.out.println("getFrequency called");
 		switch (wv) {
 		case I:
 			return this.getFrequencyHelper(tweets, " i ");
@@ -88,11 +89,12 @@ public class StringUtilities {
 	}
 
 	public float getFrequencyHelper(List<String> tweets, String toSearchFor) {
+		System.out.println("getFrequencyHelper called");
 		float result = 0;
 		for (String s : tweets) {
-			result += this.getFrequency(s, toSearchFor);
+			result += getFrequency(s, toSearchFor);
 		}
-		return result / getStringListLength(tweets);
+		return (result / getStringListLength(tweets));
 	}
 
 	private int getStringListLength(List<String> tweets) {
@@ -104,42 +106,15 @@ public class StringUtilities {
 	}
 
 	// how often does one string contain another?
-	private int getFrequency(String s, String toSearchFor) {
+	private int getFrequency(String str, String findStr) {
 
-		if (toSearchFor.length() >= s.length()) {
-			return 0;
-		}
-		char[] tsf = toSearchFor.toCharArray();
-		char[] string = (" " + s.toLowerCase()).toCharArray();
+		str = " " + str + " ";
+		int lastIndex = 0;
 		int count = 0;
-		int i = 0;
-		while (i <= string.length) {
-			if (tsf[0] == string[i]) {
-				// does the array have enough space left?
-				if (string.length < i + tsf.length) {
-					return count;
-				}
-				// check if the next chars are the same
-				else {
-					int j = i + 1;
-					int temp = 1;
-					while (tsf[temp] == string[j]) {
-
-						if (temp == tsf.length - 1) {
-							count += 1;
-						}
-						temp++;
-						count++;
-
-					}
-
-					i += tsf.length;
-				}
-
-			}
-
+		while ((lastIndex = str.indexOf(findStr, lastIndex)) != -1) {
+			count++;
+			lastIndex += findStr.length() - 1;
 		}
 		return count;
-
 	}
 }

@@ -36,14 +36,6 @@ public class TwitterHandler {
 				} catch (NullPointerException n) {
 					System.out.println("tweet was null");
 				}
-				if (request_count >= 3000) {
-					try {
-						TimeUnit.MINUTES.sleep(15);
-						request_count = 0;
-					} catch (InterruptedException e) {
-
-					}
-				}
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();

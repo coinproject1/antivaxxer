@@ -14,7 +14,6 @@ import vaccination_analysis.twitterAPI.TwitterHandler;
 
 public class StartAnalysis {
 
-	private static final int INT_MAX_REQUESTS = 10;
 	private static List<Twitterer> twitterers = new ArrayList<Twitterer>();
 	private static List<ExcelExport> excelExports = new ArrayList<ExcelExport>();
 	private static ExcelExportFactory excelExportFactory = new ExcelExportFactory();
@@ -22,31 +21,32 @@ public class StartAnalysis {
 	private static TwitterHandler twitterHandler = new TwitterHandler();
 	private static ExcelWriter excelWriter = new ExcelWriter();
 
-	
-	//23 requests per twitterer
-	//INT_MAX_REQUESTS defines how much twitterers will be scanned
 	public static void main(String... aArguments) throws IOException {
 
-		// first create a list of twitterers stored in a .txt file 
-		//at src/main/ressources/TwittererTextFiles called
-		//antivaxxers.txt provaxxers.txt
+		// first create a list of twitterers stored in a .txt file
+		// at src/main/ressources/TwittererTextFiles called
+		// antivaxxers.txt provaxxers.txt
 		createTwitteresFromFiles();
 		// then receive all tweets from those users and save them
 		getTweetsFromTwitterers();
 		// calculate the variables we need from tweets and twitter infos
-		//and store the excelexport that contain the variables in the list
+		// and store the excelexport that contain the variables in the list
 		calculateVariables();
 		// export variables for every twitterer in a CVS file
-		exportToCVS();
+		exportToExcel();
 	}
 
-	private static void exportToCVS() {
+	private static void exportToExcel() {
+		System.out.println("exportToExcel called");
 		excelWriter.writeFile("vaccination_analysis", excelExports);
+		System.out.println("exportToExcel finished");
 
 	}
 
 	private static void calculateVariables() {
+		System.out.println("calculateVariables called");
 		excelExports.addAll(excelExportFactory.getExcelExports(twitterers));
+		System.out.println("calculateVariables finished");
 
 	}
 
@@ -76,12 +76,12 @@ public class StartAnalysis {
 		Iterator<String> iter = usernames.iterator();
 		while (iter.hasNext()) {
 			String username = iter.next();
-				Twitterer antivaxxer = new Twitterer(
-						twitterHandler.getUserId(username), username, isAntivaxxer,
-						twitterHandler.getFollowers(username),
-						twitterHandler.getFriends(username));
-				System.out.println("Twitterer: " + username);
-				twitterers.add(antivaxxer);
+			Twitterer antivaxxer = new Twitterer(
+					twitterHandler.getUserId(username), username, isAntivaxxer,
+					twitterHandler.getFollowers(username),
+					twitterHandler.getFriends(username));
+			System.out.println("Twitterer: " + username);
+			twitterers.add(antivaxxer);
 		}
 
 	}

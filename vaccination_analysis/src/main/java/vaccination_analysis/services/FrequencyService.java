@@ -7,10 +7,11 @@ import vaccination_analysis.textmining.StringUtilities;
 
 public class FrequencyService {
 
-	float[] result = new float[20];
+	float[] result = new float[21];
 	StringUtilities su = new StringUtilities();
 
 	public float[] getResultArray(Twitterer t) {
+		System.out.println("getResultArray called for " + t.getUsername());
 		List<String> tweets = t.getTweets();
 		result[0] = su.getFrequency(tweets, WordVariable.I);
 		result[1] = su.getFrequency(tweets, WordVariable.The);
