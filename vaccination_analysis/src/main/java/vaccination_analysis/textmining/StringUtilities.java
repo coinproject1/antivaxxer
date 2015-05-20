@@ -92,11 +92,17 @@ public class StringUtilities {
 		for (String s : tweets) {
 			result += getFrequency(s, toSearchFor);
 		}
-		int stringListlength = getStringListLength(tweets);
+		int stringListlength = getWordCount(tweets);
 		if (stringListlength == 0) {
 			return -1;
 		}
 		return (result / stringListlength);
+	}
+	
+	//TODO
+	private int getWordCount(List<String> tweets) {
+		return 0;
+		
 	}
 
 	private int getStringListLength(List<String> tweets) {
