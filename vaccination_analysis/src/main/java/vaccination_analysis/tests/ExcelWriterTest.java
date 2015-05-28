@@ -18,25 +18,8 @@ public class ExcelWriterTest {
 		List<ExcelExport> list = new ArrayList<ExcelExport>();
 		list.add(new ExcelExport(Long.parseLong("29122"), "tester", true, 22, 12, 2.90f, 
 				1.09f, 1.09f, 200, 21, 
-				41, 22, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f));
-		list.add(new ExcelExport(Long.parseLong("2512512"), "tester2", true, 22, 12, 2.90f, 
-				1.09f, 1.09f, 200, 21, 
-				41, 22, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f));
-		list.add(new ExcelExport(Long.parseLong("2512525112"), "tester3", true, 22, 12, 2.90f, 
-				1.09f, 1.09f, 200, 21, 
-				41, 22, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 1.09f, 
-				1.09f));
+				41, 22));
+		
 		ew.writeFile(filename, list);
 		
 	}

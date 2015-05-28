@@ -6,10 +6,10 @@ import java.util.List;
 
 import vaccination_analysis.models.ExcelExport;
 import vaccination_analysis.models.Twitterer;
+import vaccination_analysis.models.WordFrequencies;
 
 public class ExcelExportFactory {
 
-	FrequencyService fs = new FrequencyService();
 
 	// returns a Hashmap with username + variables
 	public List<ExcelExport> getExcelExports(List<Twitterer> twittererList) {
@@ -33,15 +33,36 @@ public class ExcelExportFactory {
 
 	private ExcelExport getExcelExport(Twitterer t) {
 
-		float[] f = fs.getResultArray(t);
-		return new ExcelExport(t.getUserId(), t.getUsername(),
+		ExcelExport export =  new ExcelExport(t.getUserId(), t.getUsername(),
 				t.isAntivaxxer(), t.getFriends(), t.getFollowers(),
 				t.meanNumberOfMentionsInTweet(),
 				t.meanNumberOfHashtagsInTweet(), t.meanNumberOfUrlsInTweet(),
 				t.meanTextLength(), t.messagesPosted(),
-				t.numberOfDaysOnTwitter(), t.numberOfMessagesFavorited(), f[0],
-				f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10],
-				f[11], f[12], f[13], f[14], f[15], f[16], f[18], f[19], 0);
+				t.numberOfDaysOnTwitter(), t.numberOfMessagesFavorited());
+		WordFrequencies wf = new WordFrequencies(t.getTweets());
+		export.setFrequency_A(wf.getFrequency_A());
+		export.setFrequency_And(wf.getFrequency_And());
+		export.setFrequency_But(wf.getFrequency_But());
+		export.setFrequency_For(wf.getFrequency_For());
+		export.setFrequency_Have(wf.getFrequency_Have());
+		export.setFrequency_He(wf.getFrequency_He());
+		export.setFrequency_I(wf.getFrequency_I());
+		export.setFrequency_In(wf.getFrequency_In());
+		export.setFrequency_Is(wf.getFrequency_Is());
+		export.setFrequency_It(wf.getFrequency_It());
+		export.setFrequency_Me(wf.getFrequency_Me());
+		export.setFrequency_My(wf.getFrequency_My());
+		export.setFrequency_Of(wf.getFrequency_Of());
+		export.setFrequency_On(wf.getFrequency_On());
+		export.setFrequency_That(wf.getFrequency_That());
+		export.setFrequency_The(wf.getFrequency_The());
+		export.setFrequency_To(wf.getFrequency_To());
+		export.setFrequency_Was(wf.getFrequency_Was());
+		export.setFrequency_With(wf.getFrequency_With());
+		export.setFrequency_You(wf.getFrequency_You());
+		
+		return export;
 	}
+	
 
 }

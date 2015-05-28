@@ -7,14 +7,7 @@ public class ExcelExport {
 			int amountOfFriends, int amountOfFollowers,
 			float meanNumberOfMentions, float meanNumberOfHashstags,
 			float meanNumberOfHtmls, float meanTextLength, int messagesPosted,
-			int daysOnTwitter, int messagesFavorited, float frequency_I,
-			float frequency_The, float frequency_And, float frequency_To,
-			float frequency_A, float frequency_Of, float frequency_That,
-			float frequency_In, float frequency_It, float frequency_My,
-			float frequency_Is, float frequency_You, float frequency_Was,
-			float frequency_For, float frequency_Have, float frequency_With,
-			float frequency_He, float frequency_Me, float frequency_On,
-			float frequency_But) {
+			int daysOnTwitter, int messagesFavorited) {
 		this.id = id;
 		this.username = username;
 		this.isAntivaxxer = isAntivaxxer;
@@ -27,26 +20,7 @@ public class ExcelExport {
 		this.messagesPosted = messagesPosted;
 		this.daysOnTwitter = daysOnTwitter;
 		this.messagesFavorited = messagesFavorited;
-		this.frequency_I = frequency_I;
-		this.frequency_The = frequency_The;
-		this.frequency_And = frequency_And;
-		this.frequency_To = frequency_To;
-		this.frequency_A = frequency_A;
-		this.frequency_Of = frequency_Of;
-		this.frequency_That = frequency_That;
-		this.frequency_In = frequency_In;
-		this.frequency_It = frequency_It;
-		this.frequency_My = frequency_My;
-		this.frequency_Is = frequency_Is;
-		this.frequency_You = frequency_You;
-		this.frequency_Was = frequency_Was;
-		this.frequency_For = frequency_For;
-		this.frequency_Have = frequency_Have;
-		this.frequency_With = frequency_With;
-		this.frequency_He = frequency_He;
-		this.frequency_Me = frequency_Me;
-		this.frequency_On = frequency_On;
-		this.frequency_But = frequency_But;
+		
 	}
 
 	private String username;
@@ -63,6 +37,86 @@ public class ExcelExport {
 	private int messagesFavorited;
 
 	private float frequency_I;
+	public void setFrequency_I(float frequency_I) {
+		this.frequency_I = frequency_I;
+	}
+
+	public void setFrequency_The(float frequency_The) {
+		this.frequency_The = frequency_The;
+	}
+
+	public void setFrequency_And(float frequency_And) {
+		this.frequency_And = frequency_And;
+	}
+
+	public void setFrequency_To(float frequency_To) {
+		this.frequency_To = frequency_To;
+	}
+
+	public void setFrequency_A(float frequency_A) {
+		this.frequency_A = frequency_A;
+	}
+
+	public void setFrequency_Of(float frequency_Of) {
+		this.frequency_Of = frequency_Of;
+	}
+
+	public void setFrequency_That(float frequency_That) {
+		this.frequency_That = frequency_That;
+	}
+
+	public void setFrequency_In(float frequency_In) {
+		this.frequency_In = frequency_In;
+	}
+
+	public void setFrequency_It(float frequency_It) {
+		this.frequency_It = frequency_It;
+	}
+
+	public void setFrequency_My(float frequency_My) {
+		this.frequency_My = frequency_My;
+	}
+
+	public void setFrequency_Is(float frequency_Is) {
+		this.frequency_Is = frequency_Is;
+	}
+
+	public void setFrequency_You(float frequency_You) {
+		this.frequency_You = frequency_You;
+	}
+
+	public void setFrequency_Was(float frequency_Was) {
+		this.frequency_Was = frequency_Was;
+	}
+
+	public void setFrequency_For(float frequency_For) {
+		this.frequency_For = frequency_For;
+	}
+
+	public void setFrequency_Have(float frequency_Have) {
+		this.frequency_Have = frequency_Have;
+	}
+
+	public void setFrequency_With(float frequency_With) {
+		this.frequency_With = frequency_With;
+	}
+
+	public void setFrequency_He(float frequency_He) {
+		this.frequency_He = frequency_He;
+	}
+
+	public void setFrequency_Me(float frequency_Me) {
+		this.frequency_Me = frequency_Me;
+	}
+
+	public void setFrequency_On(float frequency_On) {
+		this.frequency_On = frequency_On;
+	}
+
+	public void setFrequency_But(float frequency_But) {
+		this.frequency_But = frequency_But;
+	}
+
 	private float frequency_The;
 	private float frequency_And;
 	private float frequency_To;

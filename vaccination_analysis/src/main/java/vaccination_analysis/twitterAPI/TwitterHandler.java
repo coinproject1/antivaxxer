@@ -3,9 +3,7 @@ package vaccination_analysis.twitterAPI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import twitter4j.RateLimitStatusListener;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -14,6 +12,7 @@ import twitter4j.TwitterFactory;
 public class TwitterHandler {
 
 	// returns tweets from a certain user
+	@SuppressWarnings("unchecked")
 	public static List<String> getTweetsFromUser(String username) {
 
 		System.out.println("getTweetsFromUser: " + username);

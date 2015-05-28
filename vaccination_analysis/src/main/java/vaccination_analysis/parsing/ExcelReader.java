@@ -103,13 +103,27 @@ public class ExcelReader {
 						amountOfFriends, amountOfFollowers,
 						meanNumberOfMentions, meanNumberOfHashstags,
 						meanNumberOfHtmls, meanTextLength, messagesPosted,
-						daysOnTwitter, messagesFavorited, frequency_I,
-						frequency_The, frequency_And, frequency_To,
-						frequency_A, frequency_Of, frequency_That,
-						frequency_In, frequency_It, frequency_My, frequency_Is,
-						frequency_You, frequency_Was, frequency_For,
-						frequency_Have, frequency_With, frequency_He,
-						frequency_Me, frequency_On, frequency_But);
+						daysOnTwitter, messagesFavorited);
+				e.setFrequency_A(frequency_A);
+				e.setFrequency_And(frequency_And);
+				e.setFrequency_But(frequency_But);
+				e.setFrequency_For(frequency_For);
+				e.setFrequency_Have(frequency_Have);
+				e.setFrequency_He(frequency_He);
+				e.setFrequency_I(frequency_I);
+				e.setFrequency_In(frequency_In);
+				e.setFrequency_Is(frequency_Is);
+				e.setFrequency_It(frequency_It);
+				e.setFrequency_Me(frequency_Me);
+				e.setFrequency_My(frequency_My);
+				e.setFrequency_Of(frequency_Of);
+				e.setFrequency_On(frequency_On);
+				e.setFrequency_That(frequency_That);
+				e.setFrequency_The(frequency_The);
+				e.setFrequency_To(frequency_To);
+				e.setFrequency_Was(frequency_Was);
+				e.setFrequency_With(frequency_With);
+				e.setFrequency_You(frequency_You);
 				excelExports.add(e);
 				System.out.println("read username " + e.getUsername());
 			}
